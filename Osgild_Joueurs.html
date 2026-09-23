@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carte des Terres d'Osgild (Joueurs)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #1a1a1a; }
+    #map { height: 100vh; width: 100%; background: #1a1a1a; }
+    .numbered-marker {
+      background-color: #2980b9; color: white; border-radius: 50%; border: 2px solid white;
+      text-align: center; font-weight: bold; font-size: 12px; line-height: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  const map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 3 });
+  const w = 1024, h = 725; 
+  const bounds = [[0, 0], [h, w]];
+  
+  L.imageOverlay('Osgild.png', bounds).addTo(map);
+  map.fitBounds(bounds);
+  setTimeout(() => { map.invalidateSize(); }, 100);
+
+  // Marqueurs figés exportés par le MJ
+  const savedMarkers = [{"id":1,"lat":342.5173160470848,"lng":206.78761410906972,"text":"Scénario 1 :\r\nRetour à Clairval\r\n|À la recherche d’un enfant\r\ndisparu, qu’ils croient enlevés par des\r\ngobelins, les personnages découvrent\r\nque les peaux vertes fuient le Nord,\r\nmais ils ne savent pas encore pourquoi. Ils font la connaissance de Rodrick Finelame, ancien aventurier devenu baron de Clairval et de Maëla la\r\nmagicienne, qui leur parle d’un songe\r\nétrange où elle a vu un chevalier elfe\r\npourvu d’un étrange gant de lumière.","numero":"1"},{"id":2,"lat":373.5099626572269,"lng":214.29153224543114,"text":"Scénario 2 : Fort Boueux\r\n| Les PJ sont engagés par Rodrick pour\r\nconvoyer des vivres à Fort-boueux, à la\r\nfrontière Nord de la baronnie de Clairval. Hélas, une inondation a permis\r\naux orques du désert des Morteroches\r\nde traverser le marais de Bourbevieux. Les PJ reprennent Fort-Boueux\r\npuis empêchent l’invasion des orques\r\nlors de la bataille de Vireux. Pour la\r\nseconde fois, ils peuvent trouver une\r\nréférence à un chevalier elfe porteur\r\nd’un gantelet de lumière.","numero":"2"},{"id":3,"lat":316.027990322685,"lng":275.32000403632424,"text":"Scénario 3 : Le Sanctuaire\r\n| Les personnages sont engagés pour\r\nsupprimer l’état-major d’une armée d’orques qui se rassemble dans la forêt de Hautesylve, au Nord de la Principauté. Pendant la mission, ils rencontrent deux elfes qui leur prêtent\r\nmain forte et découvrent une prophétie qui fait référence à un elfe puissant (Farendil), porteur d’un gantelet\r\nde lumière (l’Einistar). Il semble que\r\nce symbole pourrait permettre d’accéder à des artefacts puissants qui\r\npourraient faire la différence dans une\r\nguerre ","numero":"3"},{"id":4,"lat":202.03629253704077,"lng":411.84651675903655,"text":"Scénario 4 : Les Faux-monnayeurs\r\n| Les personnages se rendent à Monastir pour consulter un sage du nom\r\nd’Emarin Grisant, afin de comprendre\r\nla prophétie et de trouver les objets qui\r\npermettront de lutter contre l’invasion.\r\nMais, au lieu du sage, les PJ trouvent\r\nune bande de faux-monnayeurs qui\r\ns’est emparé de sa résidence.","numero":"4"},{"id":5,"lat":135.59820333552204,"lng":465.229341581689,"text":"Scénario 5 : Le Pic d’Andalf\r\n| Les PJ voyagent vers le Pic d’Andalf,\r\noù le sage Emarin est retenu prisonnier. Après plusieurs embuscades, ils\r\nrencontrent un barde du nom d’Amarange qui leur propose de s’introduire\r\nincognito dans le repaire des brigands en se faisant passer pour des\r\nmembres de leur organisation. Mais\r\nle barde est en réalité le véritable chef\r\ndes brigands et il utilise une magie\r\nsubtile pour les tromper.","numero":"5"},{"id":6,"lat":343.5380715829741,"lng":478.10552847266786,"text":"Scénario 6 : La Vallée des songes\r\n| Emarin suggère aux PJ de trouver une\r\nérudit du nom de Célestine qui réside\r\nen Hautesylve. Toutefois, la frontière\r\ndu royaume des elfes est fermée et les\r\npersonnages sont obligés de contourner la forêt lors d’un long périple dans\r\nles contreforts des Serres du Monde.Arrivés à destination, les personnages\r\ndoivent encore déjouer les dangers du\r\nVal des songes et les ruses des serviteurs de Célestine, destinées à éloigner\r\nles importuns. Ils bénéficient pour la\r\nseconde fois de l’aide de Tinsirith et\r\nAram Feuille-Rouge, les elfes rencontrés au sanctuaire de Trenner.","numero":"6"},{"id":7,"lat":333.5426971024009,"lng":414.0720937090503,"text":"Scénario 7 : La Justice des elfes\r\n| Tinsirith s’avère être un elfe de haute\r\nlignée et il révèle aux PJ qu’il y a\r\nquelque chose de pourri au royaume\r\nde Hautesylve. Il leur demande leur\r\naide et les charge d’enquêter au Nord\r\ndu royaume, dans la région de Thuléa,\r\ntombée aux mains des orques. Les personnages doivent ramener des preuves\r\nà Syndoril, puis y poursuivre leur enquête, afin de permettre à Tinsirith de\r\ndémasquer publiquement le traître lors\r\nd’un procès dont l’enjeu est la peine\r\ncapitale pour leur commanditaire.","numero":"7"},{"id":8,"lat":459.51280913072026,"lng":393.06112292723833,"text":"Scénario 7 : La Justice des elfes\r\n | Tinsirith s’avère être un elfe de haute\r\nlignée et il révèle aux PJ qu’il y a\r\nquelque chose de pourri au royaume\r\nde Hautesylve. Il leur demande leur\r\naide et les charge d’enquêter au Nord\r\ndu royaume, dans la région de Thuléa,\r\ntombée aux mains des orques. Les personnages doivent ramener des preuves\r\nà Syndoril, puis y poursuivre leur enquête, afin de permettre à Tinsirith de\r\ndémasquer publiquement le traître lors\r\nd’un procès dont l’enjeu est la peine\r\ncapitale pour leur commanditaire.","numero":"7"},{"id":9,"lat":339.5273380058428,"lng":574.0871132317691,"text":"Scénario 8\r\n: La Bataille de Fleck\r\n| Les PJ se rendent au village de Fleck,\r\nsitué en bordure de la Forêt Sombre,\r\npour contacter un groupe d’elfes\r\nnommé les Indécis qui pourrait les\r\nguider vers la Vallée de l’Amertume,\r\nprochaine étape de leur quête. Mais, à\r\nleur arrivée, le lieu est en proie à une\r\noffensive majeure des humanoïdes. Ils\r\nparticipent à sa défense puis doivent\r\ns’introduire dans le repaire de l’armée\r\nennemie qui s’est installée dans le\r\nval où vivent les Indécis. Là, ils poursuivent un double objectif : éliminer\r\nles leaders responsables de l’invasion\r\nde la région et trouver les Indécis.","numero":"8"}];
+
+  savedMarkers.forEach(m => {
+    const customIcon = L.divIcon({
+      className: 'numbered-marker',
+      html: m.numero,
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+    const marqueur = L.marker([m.lat, m.lng], { icon: customIcon }).addTo(map);
+    
+    // Convertit les | en retours à la ligne pour l'affichage joueur
+    const texteFormate = m.text.replace(/\|/g, '<br>');
+    marqueur.bindPopup("<b>" + texteFormate + "</b>");
+  });
+</script>
+</body>
+</html>
